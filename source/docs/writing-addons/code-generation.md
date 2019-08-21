@@ -9,7 +9,7 @@ title: Code Generation
 
 # Code Generation
 
-All [CLI tools](../../authoring-builds/cli-tools.md) are implemented following a code generation approach
+All [CLI tools](../authoring-builds/cli-tools.md) are implemented following a code generation approach
 
 ## Names
 
