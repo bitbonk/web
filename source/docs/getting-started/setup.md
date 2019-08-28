@@ -35,7 +35,6 @@ When the setup has finished, the applied changes can be checked (e.g. `git statu
 
 | File | Comment | 
 | --- | --- |
-| Changed solution file | Include build project if chosen |
 | Added `.nuke` | Root directory marker file; references default solution file |
 | Added `_build.csproj` | Build project file (console application) |
 | Added `Build.cs` | Default `Build` class implementation |
@@ -43,6 +42,7 @@ When the setup has finished, the applied changes can be checked (e.g. `git statu
 | Added `build.sh` | Bootstrapping for Unix/Bash |
 | Added `.editorconfig` | Roslyn code formatting settings |
 | Added `.dotsettings` | ReSharper code formatting settings |
+| Changed solution file | Include build project if chosen |
 
 > [!Note]
 > For maximum readability, NUKE prefers certain code formatting settings. For example, these include to omit accessibility modifiers and use expression-bodied properties. In case the build project should look like any other project, the two files `.editorconfig` and `.dotsettings` may simply be removed.

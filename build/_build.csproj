@@ -12,14 +12,14 @@
   <ItemGroup>
     <PackageReference Include="FluentFTP" Version="19.2.2" />
     <PackageReference Include="Mono.Cecil" Version="0.10.0" />
+    <PackageReference Include="Nuke.Common" Version="0.*" />
+    <PackageReference Include="Nuke.DocFX" Version="0.*" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
     <PackageReference Include="NuGet.CommandLine" Version="4.5.1" />
-    <PackageReference Include="Nuke.Common" Version="0.15.*" />
-    <PackageReference Include="Nuke.DocFX" Version="0.1.1" />
     <PackageReference Include="msdn.4.5.2" Version="0.1.0-alpha-1611021200" />
     <PackageReference Include="docfx.console" Version="2.39.2">
       <ExcludeAssets>build</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Net.Http" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
