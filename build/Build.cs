@@ -68,7 +68,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var packages = Projects.Select(x => x.PackageId).Concat("System.ValueTuple");
-            packages.ForEach(x => NuGetTasks.NuGet($"install {x} -OutputDirectory {GenerationDirectory} -DependencyVersion Ignore -Verbosity detailed"));
+            packages.ForEach(x => NuGetTasks.NuGet($"install {x} -OutputDirectory {GenerationDirectory} -ExcludeVersion -DependencyVersion Ignore -Verbosity detailed"));
         });
 
     Target CustomDocFx => _ => _
