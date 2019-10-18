@@ -20,7 +20,7 @@ MSBuild($"{SolutionFile} /target:Rebuild /p:Configuration={Configuration} /nr:fa
 The returned object is a collection of standard and error output.
 
 > [!Note]
-> Most CLI tasks require to add a package reference to the build project file. For instance, when using `NUnitTasks` there should be an entry `<PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0" />` or similar in the project file. While it would be possible to magically download required packages, this approach ensures reproducible builds at any time. If a package reference is missing, the resulting error message will contain its actual package id.
+> Most CLI tasks require to add a package reference to the build project file. For instance, when using `NUnitTasks` there should be an entry `<PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0" />` or `<PackageDownload Include="NUnit.ConsoleRunner" Version="[3.9.0]" />` in the project file. While it would be possible to magically download required packages, this approach ensures reproducible builds at any time. If a package reference/download is missing, the resulting error message will contain its actual package id.
 
 ## Fluent APIs
 
@@ -117,6 +117,16 @@ DotNetNuGetPush(s => s
 ```
 
 This example will always have 5 packages being pushed simultaneously. Possible exceptions, for instance when a package already exists, are accumulated to an `AggregateException` and thrown when all invocations have been processed. The console output is buffered until all invocations are completed.
+
+### Custom Logging
+
+The output of process execution is logged with level `Normal` for output from the standard stream, and `Error` from the error stream. In some cases, it's can be either helpful or even necessary to override this behavior. For instance, some tools (e.g., `git`) are using the error stream for standard messages. Other tools prefix their messages to indicate warnings or debug information. In these scenarios, the `ProcessTasks.DefaultLogger` can be replaced:
+
+```c#
+GitLogger = (output, type) => Logger.Normal(output);
+```
+
+Note, that replacing a logger will affect all invocations related to this tool.
 
 ### Verbosity Mapping
 

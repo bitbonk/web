@@ -39,11 +39,11 @@ No. It's perfectly fine to remove them and call `dotnet run` on the build projec
 
 ### That `=> _ => _` looks weird. Can it be changed?
 
-Firstly, we acknowledge that it looks funky, but at the same time we don't consider it being significant for working with NUKE. There are snippets available that help to write that part of target declarations more easily. In regards to possible changes, it is open for extension by overriding `NukeBuild.CreateExecutableTargetFactory()` in a [separate feature branch](https://github.com/nuke-build/common/tree/feature/target-factory).
+Firstly, we acknowledge that it looks funky, but at the same time we don't consider it being significant for working with NUKE. There are snippets available that help to write that part of target declarations more easily. Regarding possible changes, it is open for extension by overriding `NukeBuild.CreateExecutableTargetFactory()` in a [separate feature branch](https://github.com/nuke-build/common/tree/feature/target-factory).
 
 ### How can I debug my build?
 
-Build implementations reside in simple console applications. So setting the build project as the startup project will immediately allow to debug. Also using `Debugger.Launch` works, if you prefer to start the build from a shell. The best experience can be achieved by using one of the IDE extensions.
+Build implementations reside in simple console applications. So setting the build project as the startup project will immediately allow debugging. Also, using `Debugger.Launch` works, if you prefer to start the build from a shell. The best experience can be achieved by using one of the IDE extensions.
 
 ### How can I execute tools from PATH?
 

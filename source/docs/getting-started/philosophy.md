@@ -21,6 +21,6 @@ Of course, NUKE is meant to be easily configurable and extendable. Obviously, it
 
 ## Community
 
-We are recognizing the great potential of **collaborative work**. Our Slack workspace and GitHub are a great way to help each other, discuss about new ideas and troubleshoot issues. All this helps to make NUKE as a tool more reliable, more powerful and maybe the number one tool in .NET build automation.
+We are recognizing the great potential of **collaborative work**. Our Slack workspace and GitHub are a great way to help each other, discuss new ideas and troubleshoot issues. All this helps to make NUKE as a tool more reliable, more powerful and maybe the number one tool in .NET build automation.
 
 **Happy building!**

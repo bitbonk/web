@@ -9,9 +9,9 @@ title: Path Handling
 
 # System Paths
 
-Every now and then, incompliant paths can cause some non-obvious issues when executing builds. Directory separators need to match the underlying operating system, and relative paths can be messed up when using a different working directory. To solve this problem, NUKE implements several classes that make working with paths easier. A central idea of these classes is to override the division operator `/` to improve readability and hide details about directory separators at the same time.
+From time to time, incompliant paths can cause some non-obvious issues when executing builds. Directory separators need to match the underlying operating system, and relative paths can be messed up when using a different working directory. To solve this problem, NUKE implements several classes that make working with paths easier. A central idea of these classes is to override the division operator `/` to improve readability and hide details about directory separators at the same time.
 
-NUKE advocates to use absolute paths whenever possible. For this purpose, the provided class `AbsolutePath` ensures that all its instances actually represent an absolute, also known as _rooted_, path. The base class `NukeBuild` defines several such instances, most importantly via the `RootDirectory` property:
+NUKE advocates to use absolute paths whenever possible. For this purpose, the provided class `AbsolutePath` ensures that all its instances actually represent an absolute path, also known as _rooted path_. The base class `NukeBuild` defines several such instances, most importantly via the `RootDirectory` property:
 
 ```c#
 class Build : NukeBuild
