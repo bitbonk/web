@@ -6,14 +6,14 @@
   href: predefined-parameters.md
 - name: Parameter Declaration
   href: parameter-declaration.md
+- name: CI Integration
+  href: ci-integration.md
 - name: System Paths
   href: system-paths.md
 - name: Solutions and Projects
   href: solutions-and-projects.md
 - name: CLI Tools
   href: cli-tools.md
-#- name: CI Integration
-#  href: ci-integration.md
 - name: Events
   href: events.md
 - name: Snippets

@@ -1,16 +1,16 @@
 - packageId: Nuke.Common
   repositoryUrl: https://github.com/nuke-build/nuke
-- packageId: Nuke.Azure.KeyVault
-  repositoryUrl: https://github.com/nuke-build/azure-keyvault
-- packageId: Nuke.Azure
-  repositoryUrl: https://github.com/nuke-build/azure
+#- packageId: Nuke.Azure.KeyVault
+#  repositoryUrl: https://github.com/nuke-build/azure-keyvault
+#- packageId: Nuke.Azure
+#  repositoryUrl: https://github.com/nuke-build/azure
 - packageId: Nuke.Docker
   repositoryUrl: https://github.com/nuke-build/docker
-- packageId: Nuke.NSwag
-  repositoryUrl: https://github.com/nuke-build/nswag
-- packageId: Nuke.Kubernetes
-  repositoryUrl: https://github.com/nuke-build/kubernetes
-- packageId: Nuke.Helm
-  repositoryUrl: https://github.com/nuke-build/helm
-- packageId: Nuke.DocFX
-  repositoryUrl: https://github.com/nuke-build/docfx
+#- packageId: Nuke.NSwag
+#  repositoryUrl: https://github.com/nuke-build/nswag
+#- packageId: Nuke.Kubernetes
+#  repositoryUrl: https://github.com/nuke-build/kubernetes
+#- packageId: Nuke.Helm
+#  repositoryUrl: https://github.com/nuke-build/helm
+#- packageId: Nuke.DocFX
+#  repositoryUrl: https://github.com/nuke-build/docfx

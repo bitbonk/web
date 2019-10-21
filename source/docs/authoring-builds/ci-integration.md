@@ -9,4 +9,82 @@ title: CI Integration
 
 # CI Integration
 
-TBD
+Eventually, builds are supposed to be executed in a continuous integration environment. That means that every push will trigger a build to verify committed changes. NUKE aims to seamlessly integrate with those CI systems, for instance by allowing to have typed access to environment variables, reporting warnings and errors in the required format, or publishing artifacts via method calls.
+
+## Configuration Generation
+
+_Supported for TeamCity, Azure Pipelines, AppVeyor, GitHub Actions._
+
+NUKE goes one step further and allows to conveniently generate the related configuration files, for instance YML files, by using _configuration generation_ attributes. Typically, these attributes are applied to the build class:
+
+```c#
+[TeamCity(
+    TeamCityAgentPlatform.Windows,
+    DefaultBranch = DevelopBranch,
+    VcsTriggeredTargets = new[] { nameof(Pack), nameof(Test) },
+    NightlyTriggeredTargets = new[] { nameof(Test) })]
+[AzurePipelines(
+    AzurePipelinesImage.UbuntuLatest,
+    AzurePipelinesImage.WindowsLatest,
+    AzurePipelinesImage.MacOsLatest,
+    InvokedTargets = new[] { nameof(Test), nameof(Pack) })]
+class Build : NukeBuild
+{
+}
+```
+
+Using the `nameof` operator for targets and parameters ensures refactoring-safety and that the configuration files are always up-to-date with the actual implementation. If any of the configuration files have changed, a warning is reported:
+
+```c#
+NUKE Execution Engine version 1.0.0 (OSX,.NETStandard,Version=v2.0)
+
+Configuration files for TeamCity have changed.
+Configuration files for AzurePipelines have changed.
+```
+
+For TeamCity and Azure Pipelines, the generated configuration takes advantage of the target dependency model. That means that for every target, a separate build configuration (TeamCity) or job (Azure Pipelines) is created. Providing a better overview over what has succeeded or failed:
+
+![Azure Pipelines Stages](~/images/azure-stages.png)
+
+### Partitioning
+
+_Supported for TeamCity, Azure Pipelines._
+
+Many targets are well-suited to be split into multiple partitions. For instance, think of a target that executes tests for several test assemblies. NUKE introduces an easy way to run those tests in parallel on different agents:
+
+```c#
+[Partition(2)] readonly Partition TestPartition;
+
+Target Test => _ => _
+    .DependsOn(Compile)
+    .Partition(() => TestPartition)
+    .Executes(() =>
+    {
+        var testProjects = TestPartition.GetCurrent(Solution.GetProjects("*.Tests"));        
+        DotNetTest(s => s
+            .SetConfiguration(Configuration)
+            .CombineWith(
+                testProjects, (cs, v) => cs
+                    .SetProjectFile(v)));
+    });
+```
+
+Adding the `Partition` attribute on the `TestPartition` field will automatically split the execution in to the specified amount of partitions. Calling `TestPartition.GetCurrent(enumerable)` returns only the relevant items for the current partition. In terms of configuration files, this is implemented by adding the `--test-partition n` parameter. For local executions, the `TestPartition` has a size of `1`.
+
+In TeamCity, the resulting build chain would look like this:
+
+![TeamCity Build Chain](~/images/teamcity-build-chain.png)
+
+### Parameters
+
+_Supported for TeamCity._
+
+All properties and fields having the `ParameterAttribute` applied, will automatically be exposed to the _Run Build Type_ dialog.
+
+![TeamCity Dialog](~/images/teamcity-dialog.png)
+
+Required parameters are marked with red asterisks. Default values are read from the initializers. Enumeration parameters can be picked from a drop-down.
+
+### Serialization
+
+_Work in progress. This will allow state to be shared when targets are executed on different agents._
