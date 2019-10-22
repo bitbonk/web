@@ -46,6 +46,25 @@ For TeamCity and Azure Pipelines, the generated configuration takes advantage of
 
 ![Azure Pipelines Stages](~/images/azure-stages.png)
 
+### Artifacts
+
+_Supported for TeamCity, Azure Pipelines, AppVeyor, GitHub Actions._
+
+Usually, builds are supposed to publish some kind of artifacts, like NuGet packages or test results. Using the `Produces` call, artifact paths can be defined per target:
+
+```c#
+Target Pack => _ => _
+    .Produces(OutputDirectory / "*.nupkg")
+    .Executes(() =>
+    {
+        DotNetPack(s => s
+            .SetProject(Solution)
+            .SetOutputDirectory(OutputDirectory));
+    });
+```
+
+Defining artifact paths with [absolute paths](system-paths.md) is the recommended approach. In the resulting configuration files, they are automatically converted to relative paths.
+
 ### Partitioning
 
 _Supported for TeamCity, Azure Pipelines._
@@ -60,16 +79,17 @@ Target Test => _ => _
     .Partition(() => TestPartition)
     .Executes(() =>
     {
-        var testProjects = TestPartition.GetCurrent(Solution.GetProjects("*.Tests"));        
+        var projects = Solution.GetProjects("*.Tests");
+        var relevantProjects = TestPartition.GetCurrent(projects);        
         DotNetTest(s => s
             .SetConfiguration(Configuration)
             .CombineWith(
-                testProjects, (cs, v) => cs
+                relevantProjects, (cs, v) => cs
                     .SetProjectFile(v)));
     });
 ```
 
-Adding the `Partition` attribute on the `TestPartition` field will automatically split the execution in to the specified amount of partitions. Calling `TestPartition.GetCurrent(enumerable)` returns only the relevant items for the current partition. In terms of configuration files, this is implemented by adding the `--test-partition n` parameter. For local executions, the `TestPartition` has a size of `1`.
+Adding the `Partition` attribute on the `TestPartition` field will automatically split the execution in to the specified amount of partitions. A partition can be associated with a target via `Partition(() => Partition)`. Calling `TestPartition.GetCurrent(enumerable)` inside the target implementation returns only the relevant items for the current partition. In terms of configuration files, this is implemented by adding the `--test-partition n` parameter. For local executions, the `TestPartition` has a size of `1`.
 
 In TeamCity, the resulting build chain would look like this:
 
