@@ -4,16 +4,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using FluentFTP;
 using Nuke.Common;
 using Nuke.Common.ProjectModel;
+using Nuke.Common.Tools.DocFX;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Utilities.Collections;
-using Nuke.DocFX;
 using static CustomTocWriter;
 using static Disclaimer;
 using static CustomDocFx;
@@ -22,8 +21,7 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.FtpTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Logger;
-using static Nuke.Common.Tools.NuGet.NuGetTasks;
-using static Nuke.DocFX.DocFXTasks;
+using static Nuke.Common.Tools.DocFX.DocFXTasks;
 
 class Build : NukeBuild
 {
