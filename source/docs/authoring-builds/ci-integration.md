@@ -24,6 +24,7 @@ NUKE goes one step further and allows to conveniently generate the related confi
     VcsTriggeredTargets = new[] { nameof(Pack), nameof(Test) },
     NightlyTriggeredTargets = new[] { nameof(Test) })]
 [AzurePipelines(
+    null,
     AzurePipelinesImage.UbuntuLatest,
     AzurePipelinesImage.WindowsLatest,
     AzurePipelinesImage.MacOsLatest,
