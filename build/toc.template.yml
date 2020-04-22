@@ -8,47 +8,66 @@
 - name: Execution
   items:
   - uid: Nuke.Common.Tooling.ProcessTasks
+  - uid: Nuke.Common.Tooling.LocalExecutableAttribute
   - uid: Nuke.Common.Tooling.PathExecutableAttribute
   - uid: Nuke.Common.Tooling.PackageExecutableAttribute
   - uid: Nuke.Common.Tooling.ToolPathResolver
   - uid: Nuke.Common.Tooling.NuGetPackageResolver
 - name: IO
   items:
-  - uid: Nuke.Common.IO.PathConstruction
-  - uid: Nuke.Common.IO.FileSystemTasks
-  - uid: Nuke.Common.IO.FtpTasks
-  - uid: Nuke.Common.IO.HttpTasks
-  - uid: Nuke.Common.IO.SerializationTasks
-  - uid: Nuke.Common.IO.TextTasks
-  - uid: Nuke.Common.IO.XmlTasks
+    - uid: Nuke.Common.IO.PathConstruction
+    - uid: Nuke.Common.IO.FileSystemTasks
+    - uid: Nuke.Common.IO.FtpTasks
+    - uid: Nuke.Common.IO.HttpTasks
+    - uid: Nuke.Common.IO.SerializationTasks
+    - uid: Nuke.Common.IO.CompressionTasks
+    - uid: Nuke.Common.IO.TextTasks
+    - uid: Nuke.Common.IO.XmlTasks
 - name: CI Servers
   items:
-  - uid: Nuke.Common.BuildServers.AppVeyor
-  - uid: Nuke.Common.BuildServers.Bitrise
-  - uid: Nuke.Common.BuildServers.GitLab
-  - uid: Nuke.Common.BuildServers.Jenkins
-  - uid: Nuke.Common.BuildServers.TeamCity
-  - uid: Nuke.Common.BuildServers.TeamServices
-  - uid: Nuke.Common.BuildServers.Travis
+    - uid: Nuke.Common.CI.AppVeyor
+    - uid: Nuke.Common.CI.AzurePipelines
+    - uid: Nuke.Common.CI.Bamboo
+    - uid: Nuke.Common.CI.Bitrise
+    - uid: Nuke.Common.CI.GitHubActions
+    - uid: Nuke.Common.CI.GitLab
+    - uid: Nuke.Common.CI.Jenkins
+    - uid: Nuke.Common.CI.TeamCity
+    - uid: Nuke.Common.CI.TravisCI
+- name: CI Configuration
+  items:
+    - uid: Nuke.Common.CI.AppVeyorAttribute
+    - uid: Nuke.Common.CI.AzurePipelinesAttribute
+    - uid: Nuke.Common.CI.GitHubActionsAttribute
+    - uid: Nuke.Common.CI.TeamCityAttribute
+    - uid: Nuke.Common.CI.PartitionAttribute
 - name: VCS
   items:
-  - uid: Nuke.Common.Tools.Git.GitTasks
-  - uid: Nuke.Common.Git.GitRepositoryAttribute
+    - uid: Nuke.Common.Tools.Git.GitTasks
+    - uid: Nuke.Common.Git.GitRepositoryAttribute
 - name: Build and Code
   items:
-  - uid: Nuke.Common.Tools.DotNet.DotNetTasks
-  - uid: Nuke.Common.Tools.MSBuild.MSBuildTasks
-  - uid: Nuke.Common.ProjectModel.ProjectModelTasks
-  - uid: Nuke.Common.ProjectModel.SolutionAttribute
-- name: Package Management
+    - uid: Nuke.Common.Tools.DotNet.DotNetTasks
+    - uid: Nuke.Common.Tools.MSBuild.MSBuildTasks
+    - uid: Nuke.Common.ProjectModel.ProjectModelTasks
+    - uid: Nuke.Common.ProjectModel.SolutionAttribute
+- name: Release Management
   items:
-  - uid: Nuke.Common.Tools.Npm.NpmTasks
-  - uid: Nuke.Common.Tools.NuGet.NuGetTasks
-  - uid: Nuke.Common.Tools.Paket.PaketTasks
+    - uid: Nuke.Common.Tools.GitHub.GitHubTasks
+    - uid: Nuke.Common.ChangeLog.ChangelogTasks
+    - uid: Nuke.Common.Tools.Npm.NpmTasks
+    - uid: Nuke.Common.Tools.NuGet.NuGetTasks
+    - uid: Nuke.Common.Tools.Paket.PaketTasks
+    - uid: Nuke.Common.Tools.DocFX.DocFXTasks
+    - uid: Nuke.Common.Tools.Octopus.OctopusTasks
+    - uid: Nuke.Common.Tools.SignTool.SignToolTasks
+    - uid: Nuke.Common.Tools.GitReleaseManager.GitReleaseManagerTasks
+    - uid: Nuke.Common.Tools.GitVersion.GitVersionTasks
+    - uid: Nuke.Common.Tools.GitVersion.GitVersionAttribute
 - name: Testing
   items:
   - uid: Nuke.Common.Tools.Xunit.XunitTasks
-  - uid: Nuke.Common.Tools.Nunit.NunitTasks
+  - uid: Nuke.Common.Tools.NUnit.NUnitTasks
   - uid: Nuke.Common.Tools.SpecFlow.SpecFlowTasks
   - uid: Nuke.Common.Tools.VSTest.VSTestTasks
   - uid: Nuke.Common.Tools.MSpec.MSpecTasks
@@ -57,6 +76,7 @@
   items:
   - uid: Nuke.Common.Tools.Coverlet.CoverletTasks
   - uid: Nuke.Common.Tools.DotCover.DotCoverTasks
+  - uid: Nuke.Common.Tools.DotMemoryUnit.DotMemoryUnitTasks
   - uid: Nuke.Common.Tools.DupFinder.DupFinderTasks
   - uid: Nuke.Common.Tools.InspectCode.InspectCodeTasks
   - uid: Nuke.Common.Tools.OpenCover.OpenCoverTasks
@@ -66,27 +86,18 @@
   - uid: Nuke.Common.Tools.ReportGenerator.ReportGeneratorTasks
 - name: Virtualization
   items:
-  - uid: Nuke.Docker.DockerTasks
-  - uid: Nuke.Kubernetes.KubernetesTasks
-  - uid: Nuke.Helm.HelmTasks
-- name: Release
-  items:
-  - uid: Nuke.Common.ChangeLog.ChangelogTasks
-  - uid: Nuke.DocFX.DocFXTasks
-  - uid: Nuke.Common.Tools.GitReleaseManager.GitReleaseManagerTasks
-  - uid: Nuke.Common.Tools.GitVersion.GitVersionTasks
-  - uid: Nuke.Common.Tools.GitVersion.GitVersionAttribute
+    - uid: Nuke.Common.Tools.Docker.DockerTasks
+    - uid: Nuke.Common.Tools.Kubernetes.KubernetesTasks
+    - uid: Nuke.Common.Tools.Helm.HelmTasks
 - name: Social Media
   items:
   - uid: Nuke.Common.Tools.Slack.SlackTasks
   - uid: Nuke.Common.Gitter.GitterTasks
+  - uid: Nuke.Common.Tools.Twitter.TwitterTasks
 - name: Others
   items:
-  - uid: Nuke.Azure.AzureTasks
-  - uid: Nuke.NSwag.NSwagTasks
   - uid: Nuke.Common.Tools.GitLink.GitLinkTasks
-  - uid: Nuke.Common.Tools.Octopus.OctopusTasks
-  - uid: Nuke.Common.Tools.SignTool.SignToolTasks
+  - uid: Nuke.Common.Tools.NSwag.NSwagTasks
   - uid: Nuke.Common.Tools.Squirrel.SquirrelTasks
   - uid: Nuke.Common.Tools.Unity.UnityTasks
   - uid: Nuke.Common.Tools.VSWhere.VSWhereTasks
