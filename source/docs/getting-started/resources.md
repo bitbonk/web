@@ -10,14 +10,16 @@ title: Resources
 # Resources
 
 ## Talks
-- [NUKE: A Modern Build System for C#/.NET](https://www.youtube.com/watch?v=U7TBrWo5Uag) by Matthias Koch at [DotNext 2019 St. Petersburg](https://2019.dotnext-piter.ru/en/)
-- [NUKE: Build automation for C# developers](https://www.youtube.com/watch?v=7gEqxzD6hbs) by Matthias Koch at [DotNext 2017 Moscow](https://2017.dotnext-moscow.ru/en/)
+- [10 Ingredients for an AKEless Build System](https://www.youtube.com/watch?v=SVD70QYvQ6I) by Matthias Koch at [.NET Fest 2019 Kiev](https://dotnetfest.com/dotnetfest2019/indexe.html)
+- [A Modern Build System for C#/.NET](https://www.youtube.com/watch?v=U7TBrWo5Uag) by Matthias Koch at [DotNext 2019 St. Petersburg](https://2019.dotnext-piter.ru/en/)
+- [Build automation for C# developers](https://www.youtube.com/watch?v=7gEqxzD6hbs) by Matthias Koch at [DotNext 2017 Moscow](https://2017.dotnext-moscow.ru/en/)
 
 ## Podcasts
 - [Talking about NUKE](https://dotnetcore.show/episode-22-nuke-with-matthias-koch/) with Matthias Koch and Jamie Taylor on [dotnetcore.show](https://dotnetcore.show/)
 - [Cross-Platform CI/CD Automation Using NUKE](https://dotnetrocks.com/?show=1598) with Matthias Koch, Carl Franklin, and Richard Campbell on [.NET Rocks!](https://dotnetrocks.com)
 
-## Posts
+## Blog Posts
+- [14 reasons for adopting NUKE as your next build automation tool](https://www.continuousimprover.com/2020/03/reasons-for-adopting-nuke.html) by Dennis Doomen
 - [Building a CI/CD pipeline for nuget package](https://medium.com/@sleepymaniac/building-a-ci-cd-pipeline-for-nuget-package-with-help-from-gitversion-nuke-and-azure-devops-4dd00521b1ac) by Dzmitry Safarau
 - [Introducing NUKE Build](https://www.huanlintalk.com/2018/04/introducing-nuke-build.html) by Michael Tsai (chinese)
 - [Escalating Automation - The Nuclear Option](https://blog.dangl.me/archive/escalating-automation-the-nuclear-option/) by Georg Dangl
