@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using FluentFTP;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DocFX;
 using Nuke.Common.Tools.NuGet;
@@ -23,6 +24,12 @@ using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Logger;
 using static Nuke.Common.Tools.DocFX.DocFXTasks;
 
+[GitHubActions(
+    "continuous",
+    GitHubActionsImage.WindowsLatest,
+    On = new[] { GitHubActionsTrigger.Push },
+    InvokedTargets = new[] { nameof(Publish) },
+    ImportSecrets = new[] { nameof(FtpServer), nameof(FtpUsername), nameof(FtpPassword) })]
 class Build : NukeBuild
 {
     public static int Main() => Execute<Build>(x => x.BuildSite);
@@ -31,12 +38,8 @@ class Build : NukeBuild
     [Parameter] readonly string FtpPassword;
     [Parameter] readonly string FtpServer;
 
-    [Parameter] readonly bool PublishDocs;
-    [Parameter] readonly bool PublishImages;
-    [Parameter] readonly bool PublishApi;
-
-    new AbsolutePath OutputDirectory => RootDirectory / "output";
-    new AbsolutePath SourceDirectory => RootDirectory / "source";
+    AbsolutePath OutputDirectory => RootDirectory / "output";
+    AbsolutePath SourceDirectory => RootDirectory / "source";
 
     AbsolutePath GenerationDirectory => TemporaryDirectory / "packages";
     AbsolutePath ApiDirectory => SourceDirectory / "api";
@@ -61,12 +64,12 @@ class Build : NukeBuild
 
     Target DownloadPackages => _ => _
         .DependsOn(Clean)
-        .OnlyWhenStatic(() => PublishApi)
-        .WhenSkipped(DependencyBehavior.Skip)
         .Executes(() =>
         {
             var packages = Projects.Select(x => x.PackageId).Concat("System.ValueTuple");
-            packages.ForEach(x => NuGetTasks.NuGet($"install {x} -OutputDirectory {GenerationDirectory} -ExcludeVersion -DependencyVersion Ignore -Verbosity detailed"));
+            packages.ForEach(x =>
+                NuGetTasks.NuGet(
+                    $"install {x} -OutputDirectory {GenerationDirectory} -ExcludeVersion -DependencyVersion Ignore -Verbosity detailed"));
         });
 
     Target CustomDocFx => _ => _
@@ -78,8 +81,6 @@ class Build : NukeBuild
 
     Target Disclaimer => _ => _
         .DependsOn(DownloadPackages)
-        .OnlyWhenStatic(() => PublishApi)
-        .WhenSkipped(DependencyBehavior.Skip)
         .Executes(() =>
         {
             var disclaimerDirectory = SourceDirectory / "disclaimers";
@@ -93,7 +94,6 @@ class Build : NukeBuild
 
     Target Metadata => _ => _
         .DependsOn(DownloadPackages, CustomDocFx)
-        .OnlyWhenStatic(() => PublishApi)
         .WhenSkipped(DependencyBehavior.Skip)
         .Executes(() =>
         {
@@ -128,25 +128,20 @@ class Build : NukeBuild
         {
             FtpCredentials = new NetworkCredential(FtpUsername, FtpPassword);
 
-            if (PublishDocs)
-                FtpUploadDirectoryRecursively(SiteDirectory / "docs", FtpServer + "/docs");
-            if (PublishImages)
-                FtpUploadDirectoryRecursively(SiteDirectory / "images", FtpServer + "/images");
-            if (PublishApi)
-                FtpUploadDirectoryRecursively(SiteDirectory / "api", FtpServer + "/api");
+            FtpUploadDirectoryRecursively(SiteDirectory / "docs", FtpServer + "/docs");
+            FtpUploadDirectoryRecursively(SiteDirectory / "images", FtpServer + "/images");
+            FtpUploadDirectoryRecursively(SiteDirectory / "api", FtpServer + "/api");
 
-
-            return;
-            var client = new FtpClient(FtpServer, new NetworkCredential(FtpUsername, FtpPassword));
-            client.Connect();
-
-            Directory.GetDirectories(SiteDirectory, "*", SearchOption.AllDirectories)
-                .ForEach(directory =>
-                {
-                    var files = GlobFiles(directory, "*").ToArray();
-                    var relativePath = GetRelativePath(SiteDirectory, directory);
-                    var uploadedFiles = client.UploadFiles(files, relativePath, verifyOptions: FtpVerify.Retry);
-                    ControlFlow.Assert(uploadedFiles == files.Length, "uploadedFiles == files.Length");
-                });
+            // var client = new FtpClient(FtpServer, new NetworkCredential(FtpUsername, FtpPassword));
+            // client.Connect();
+            //
+            // Directory.GetDirectories(SiteDirectory, "*", SearchOption.AllDirectories)
+            //     .ForEach(directory =>
+            //     {
+            //         var files = GlobFiles(directory, "*").ToArray();
+            //         var relativePath = GetRelativePath(SiteDirectory, directory);
+            //         var uploadedFiles = client.UploadFiles(files, relativePath, verifyOptions: FtpVerify.Retry);
+            //         ControlFlow.Assert(uploadedFiles == files.Length, "uploadedFiles == files.Length");
+            //     });
         });
 }
