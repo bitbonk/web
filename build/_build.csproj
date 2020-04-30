@@ -12,26 +12,12 @@
   <ItemGroup>
     <PackageReference Include="FluentFTP" Version="19.2.2" />
     <PackageReference Include="Mono.Cecil" Version="0.10.0" />
-    <PackageReference Include="Nuke.Common" Version="0.24.0-alpha0165" />
+    <PackageReference Include="Nuke.Common" Version="0.*" />
     <PackageReference Include="NuGet.CommandLine" Version="5.3.0" />
     <PackageReference Include="msdn.4.5.2" Version="0.1.0-alpha-1611021200" />
     <PackageReference Include="docfx.console" Version="2.46.0">
       <ExcludeAssets>build</ExcludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="*.csproj.DotSettings" />
-
-    <None Include="..\build.ps1" />
-    <None Include="..\build.sh" />
-    <None Include="..\.nuke" />
-    <None Include="..\global.json" Condition="Exists('..\global.json')" />
-    <None Include="..\nuget.config" Condition="Exists('..\nuget.config')" />
-    <None Include="..\Jenkinsfile" Condition="Exists('..\Jenkinsfile')" />
-    <None Include="..\appveyor.yml" Condition="Exists('..\appveyor.yml')" />
-    <None Include="..\.travis.yml" Condition="Exists('..\.travis.yml')" />
-    <None Include="..\GitVersion.yml" Condition="Exists('..\GitVersion.yml')" />
   </ItemGroup>
 
   <ItemGroup>

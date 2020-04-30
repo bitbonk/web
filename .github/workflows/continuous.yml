@@ -9,7 +9,7 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --configure-build-server --host GitHubActions
+#         nuke --generate-configuration GitHubActions_continuous --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
@@ -24,8 +24,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Run 'powershell .\build.ps1 Publish'
-        run: powershell .\build.ps1 Publish
+      - name: Run './build.cmd Publish'
+        run: ./build.cmd Publish
         env:
             FtpServer: ${{ secrets.FtpServer }}
             FtpUsername: ${{ secrets.FtpUsername }}

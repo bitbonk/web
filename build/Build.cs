@@ -10,6 +10,7 @@ using System.Net;
 using FluentFTP;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
+using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DocFX;
 using Nuke.Common.Tools.NuGet;
@@ -128,9 +129,7 @@ class Build : NukeBuild
         {
             FtpCredentials = new NetworkCredential(FtpUsername, FtpPassword);
 
-            FtpUploadDirectoryRecursively(SiteDirectory / "docs", FtpServer + "/docs");
-            FtpUploadDirectoryRecursively(SiteDirectory / "images", FtpServer + "/images");
-            FtpUploadDirectoryRecursively(SiteDirectory / "api", FtpServer + "/api");
+            FtpUploadDirectoryRecursively(SiteDirectory, FtpServer);
 
             // var client = new FtpClient(FtpServer, new NetworkCredential(FtpUsername, FtpPassword));
             // client.Connect();
