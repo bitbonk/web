@@ -62,3 +62,14 @@ For **fish**, add the following to `config.fish`:
 ```bash
 complete -fc nuke --arguments '(nuke :complete (commandline -cp))'
 ```
+
+### Directory Navigation
+
+For easier directory navigation, the following functions can be added for PowerShell or Bash-based terminals:
+
+```bash
+function nuke. { cd $(nuke :GetRootDirectory) }
+function nuke.. { cd $(nuke :GetParentRootDirectory) }
+```
+
+The `nuke.` function will move to the current root directory. Whereas `nuke..` will move to the next root directory.
