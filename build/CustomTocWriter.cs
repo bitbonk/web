@@ -23,6 +23,7 @@ using Nuke.Common.Gitter;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.BenchmarkDotNet;
 using Nuke.Common.Tools.CoverallsNet;
 using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DocFX;
@@ -30,7 +31,6 @@ using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotCover;
 using Nuke.Common.Tools.DotMemoryUnit;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.DupFinder;
 using Nuke.Common.Tools.EntityFramework;
 using Nuke.Common.Tools.Git;
 using Nuke.Common.Tools.GitHub;
@@ -39,7 +39,6 @@ using Nuke.Common.Tools.GitReleaseManager;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.Helm;
 using Nuke.Common.Tools.InnoSetup;
-using Nuke.Common.Tools.InspectCode;
 using Nuke.Common.Tools.Kubernetes;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.Npm;
@@ -50,11 +49,14 @@ using Nuke.Common.Tools.Octopus;
 using Nuke.Common.Tools.OpenCover;
 using Nuke.Common.Tools.Paket;
 using Nuke.Common.Tools.ReportGenerator;
+using Nuke.Common.Tools.ReSharper;
+using Nuke.Common.Tools.SignPath;
 using Nuke.Common.Tools.SignTool;
 using Nuke.Common.Tools.Slack;
 using Nuke.Common.Tools.SonarScanner;
 using Nuke.Common.Tools.SpecFlow;
 using Nuke.Common.Tools.Squirrel;
+using Nuke.Common.Tools.Teams;
 using Nuke.Common.Tools.TestCloud;
 using Nuke.Common.Tools.Twitter;
 using Nuke.Common.Tools.Unity;
@@ -180,6 +182,7 @@ static class CustomTocWriter
                     typeof(DocFXTasks),
                     typeof(OctopusTasks),
                     typeof(SignToolTasks),
+                    typeof(SignPathTasks),
                     typeof(GitReleaseManagerTasks)
                 }
             },
@@ -199,11 +202,11 @@ static class CustomTocWriter
                 "Coverage & Quality",
                 new[]
                 {
+                    typeof(BenchmarkDotNetTasks),
                     typeof(CoverletTasks),
                     typeof(DotCoverTasks),
                     typeof(DotMemoryUnitTasks),
-                    typeof(DupFinderTasks),
-                    typeof(InspectCodeTasks),
+                    typeof(ReSharperTasks),
                     typeof(OpenCoverTasks),
                     typeof(SonarScannerTasks),
                     typeof(CoverallsNetTasks),
@@ -225,6 +228,7 @@ static class CustomTocWriter
                 {
                     typeof(SlackTasks),
                     typeof(GitterTasks),
+                    typeof(TeamsTasks),
                     typeof(TwitterTasks),
                 }
             },

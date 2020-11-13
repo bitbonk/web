@@ -10,6 +10,7 @@ title: Resources
 # Resources
 
 ## Presentations
+- [Designing a Build System with IDE Support in Mind](https://www.youtube.com/watch?v=N57Zjb5-08I) by Matthias Koch at [JetBrains Webinar](https://blog.jetbrains.com/dotnet/2020/04/24/nuke-designing-build-system-ide-support-mind-webinar-recording/)
 - [10 Ingredients for an AKEless Build System](https://www.youtube.com/watch?v=SVD70QYvQ6I) by Matthias Koch at [.NET Fest 2019 Kiev](https://dotnetfest.com/dotnetfest2019/indexe.html)
 - [A Modern Build System for C#/.NET](https://www.youtube.com/watch?v=SwZi0B6_dQ0) by Matthias Koch at [dev-days-online](https://www.dev-days-online.de/) (german)
 - [A Modern Build System for C#/.NET](https://www.youtube.com/watch?v=U7TBrWo5Uag) by Matthias Koch at [DotNext 2019 St. Petersburg](https://2019.dotnext-piter.ru/en/)
@@ -21,6 +22,8 @@ title: Resources
 
 ## Blog Posts
 - [14 Reasons for adopting NUKE as your next Build Automation Tool](https://www.continuousimprover.com/2020/03/reasons-for-adopting-nuke.html) by Dennis Doomen
+- [Setting up a build with NUKE](https://blog.codingmilitia.com/2020/10/24/2020-10-24-setting-up-a-build-with-nuke/) by João Antunes
+- [Building GitHub Actions with NUKE](https://rodneylittlesii.com/posts/topic/building-github-actions-with-nuke) by Rodney Littles II
 - [From CAKE to NUKE - Files in use and Visual Studio Active Build configurations](https://www.duaneedwards.net/from-cake-to-nuke-files-in-use-visual-studio-active-build-configurations/) by Duane Edwards
 - [From CAKE to NUKE - #1 Cleaning things up](https://www.duaneedwards.net/from-cake-to-nuke-1/) by Duane Edwards
 - [Publishing .NET Core NuGet Packages with NUKE and AppVeyor](https://cfrenzel.com/publishing-nuget-nuke-appveyor/) by Camron Frenzel
@@ -36,6 +39,7 @@ title: Resources
 - [AvaloniaUI/Avalonia](https://github.com/AvaloniaUI/Avalonia/tree/master/nukebuild)
 - [avivasolutionsnl/sitecore-commerce-docker](https://github.com/avivasolutionsnl/sitecore-commerce-docker/tree/master/build)
 - [avivasolutionsnl/sitecore-docker](https://github.com/avivasolutionsnl/sitecore-docker/tree/master/build)
+- [ChilliCream/hotchocolate](https://github.com/ChilliCream/hotchocolate/tree/main/.build)
 - [fluentassertions/fluentassertions](https://github.com/fluentassertions/fluentassertions/tree/master/Build)
 - [zarunbal/LogExpert](https://github.com/zarunbal/LogExpert/tree/master/build)
 - [nuke-build/common](https://github.com/nuke-build/common/tree/develop/build)
