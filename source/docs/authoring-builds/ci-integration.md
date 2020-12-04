@@ -33,7 +33,7 @@ class Build : NukeBuild
 }
 ```
 
-Using the `nameof` operator for targets and parameters ensures refactoring-safety and that the configuration files are always up-to-date with the actual implementation. If any of the configuration files have changed, a warning is reported:
+Using the `nameof` operator for targets and parameters ensures refactoring-safety and that the configuration files are always up-to-date with the actual implementation. After changing the build configuration (e.g., renaming targets), the build must be triggered once, for instance by calling `nuke --help`. If any of the configuration files have changed, a warning is reported:
 
 ```c#
 NUKE Execution Engine version 1.0.0 (OSX,.NETStandard,Version=v2.0)
@@ -42,7 +42,12 @@ Configuration files for TeamCity have changed.
 Configuration files for AzurePipelines have changed.
 ```
 
-For TeamCity and Azure Pipelines, the generated configuration takes advantage of the target dependency model. That means that for every target, a separate build configuration (TeamCity) or job (Azure Pipelines) is created. Providing a better overview over what has succeeded or failed:
+> [!Warning]
+> In TeamCity, _Import settings from .teamcity/settings.kts_ must be chosen during project creation. Afterwards, _Versioned Settings_ must be enabled as follows:
+> ![TeamCity Versioned Settings](~/images/teamcity-versioned-settings.png)
+
+
+For TeamCity and Azure Pipelines, the generated configuration takes advantage of the target dependency model. That means that for every target, a separate build configuration (TeamCity) or job (Azure Pipelines) is created. This provides a better overview for individual target behavior:
 
 ![Azure Pipelines Stages](~/images/azure-stages.png)
 
