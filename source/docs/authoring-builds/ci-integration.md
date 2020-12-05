@@ -36,6 +36,8 @@ class Build : NukeBuild
 Using the `nameof` operator for targets and parameters ensures refactoring-safety and that the configuration files are always up-to-date with the actual implementation. After changing the build configuration (e.g., renaming targets), the build must be triggered once, for instance by calling `nuke --help`. If any of the configuration files have changed, a warning is reported:
 
 ```c#
+$ nuke --help
+
 NUKE Execution Engine version 1.0.0 (OSX,.NETStandard,Version=v2.0)
 
 Configuration files for TeamCity have changed.
@@ -45,7 +47,6 @@ Configuration files for AzurePipelines have changed.
 > [!Warning]
 > In TeamCity, _Import settings from .teamcity/settings.kts_ must be chosen during project creation. Afterwards, _Versioned Settings_ must be enabled as follows:
 > ![TeamCity Versioned Settings](~/images/teamcity-versioned-settings.png)
-
 
 For TeamCity and Azure Pipelines, the generated configuration takes advantage of the target dependency model. That means that for every target, a separate build configuration (TeamCity) or job (Azure Pipelines) is created. This provides a better overview for individual target behavior:
 
@@ -69,6 +70,22 @@ Target Pack => _ => _
 ```
 
 Defining artifact paths with [absolute paths](system-paths.md) is the recommended approach. In the resulting configuration files, they are automatically converted to relative paths.
+
+For multi-staged builds with TeamCity, a target can consume the artifacts from another target by using `Produces` and `Consumes` in combination:
+
+```c#
+Target Restore => _ => _
+    .Produces(SourceDirectory / "*/obj/**/*")
+    .Executes(() =>
+    {
+    });
+
+Target Compile => _ => _
+    .Consumes(Restore)
+    .Executes(() =>
+    {
+    });
+```
 
 ### Partitioning
 
