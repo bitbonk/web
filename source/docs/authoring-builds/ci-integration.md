@@ -44,7 +44,7 @@ Configuration files for TeamCity have changed.
 Configuration files for AzurePipelines have changed.
 ```
 
-> [!Warning]
+> [!Note]
 > In TeamCity, the _Import settings from .teamcity/settings.kts_ option must be chosen during project creation. Afterwards, _Versioned Settings_ must be enabled as follows:
 > ![TeamCity Versioned Settings](~/images/teamcity-versioned-settings.png)
 > This approach still allows to apply manual changes to the configurations, like adding [triggers](https://www.jetbrains.com/help/teamcity/configuring-build-triggers.html), [failure conditions](https://www.jetbrains.com/help/teamcity/build-failure-conditions.html), [report tabs](https://www.jetbrains.com/help/teamcity/including-third-party-reports-in-the-build-results.html), and more. In this case, TeamCity will commit a patch file to `.teamcity/patches` in the repository.
