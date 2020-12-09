@@ -65,11 +65,15 @@ complete -fc nuke --arguments '(nuke :complete (commandline -cp))'
 
 ### Directory Navigation
 
+_Available with 5.1_
+
 For easier directory navigation, the following functions can be added for PowerShell or Bash-based terminals:
 
 ```bash
-function nuke. { cd $(nuke :GetRootDirectory) }
-function nuke.. { cd $(nuke :GetParentRootDirectory) }
+function nuke/ { nuke :PushWithChosenRootDirectory; cd $(nuke :GetNextDirectory) }
+function nuke. { nuke :PushWithCurrentRootDirectory; cd $(nuke :GetNextDirectory) }
+function nuke.. { nuke :PushWithParentRootDirectory; cd $(nuke :GetNextDirectory) }
+function nuke- { nuke :PopDirectory; cd $(nuke :GetNextDirectory) }
 ```
 
-The `nuke.` function will move to the current root directory. Whereas `nuke..` will move to the next root directory.
+The `nuke/` function will list all the sub-directories that have `.nuke` file. With `nuke.` the working directory will be switched to the current root directory, whereas `nuke..` will move to the parent root directory. Using the `nuke-` command, previously visited directories can be restored from the session stack.
