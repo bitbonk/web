@@ -17,6 +17,7 @@ title: Resources
 - [Build automation for C# developers](https://www.youtube.com/watch?v=7gEqxzD6hbs) by Matthias Koch at [DotNext 2017 Moscow](https://2017.dotnext-moscow.ru/en/)
 
 ## Podcasts
+- [NUKE 5.0](https://dotnetrocks.com/?show=1716) with Matthias Koch, Carl Franklin, and Richard Campbell on [.NET Rocks!](https://dotnetrocks.com)
 - [Talking about NUKE](https://dotnetcore.show/episode-22-nuke-with-matthias-koch/) with Matthias Koch and Jamie Taylor on [dotnetcore.show](https://dotnetcore.show/)
 - [Cross-Platform CI/CD Automation Using NUKE](https://dotnetrocks.com/?show=1598) with Matthias Koch, Carl Franklin, and Richard Campbell on [.NET Rocks!](https://dotnetrocks.com)
 
